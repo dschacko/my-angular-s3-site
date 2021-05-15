@@ -10,7 +10,7 @@
 <a href="https://codecov.io/gh/FullStack-Templates/Angular-template"><img alt="codecov" src="https://codecov.io/gh/FullStack-Templates/Angular-template/branch/master/graph/badge.svg?token=VG4HFY1PJW" height="20"/></a>
 <a href="https://www.codacy.com/gh/FullStack-Templates/Angular-template/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FullStack-Templates/Angular-template&amp;utm_campaign=Badge_Grade"><img alt="Codacy Badge" src="https://app.codacy.com/project/badge/Grade/38bb383c244749dab8aebf3601c52e3d" height="20"/></a>
 <a href="https://david-dm.org/FullStack-Templates/Angular-template"><img alt="Dependencies Status" src="https://david-dm.org/FullStack-Templates/Angular-template.svg" height="20"/></a>
-<a href="https://github.com/Web-Tech-Projects/Angular-template/actions/workflows/deploy.yml"><img alt="DeployAngular" src="https://github.com/Web-Tech-Projects/Angular-template/actions/workflows/deploy.yml/badge.svg" height="20"/></a>
+<a href="https://david-dm.org/dschacko/my-angular-s3-site"><img alt="DeployAngular" src="https://status.david-dm.org/gh/dschacko/my-angular-s3-site.svg" height="20"/></a>
 <a href="https://app.netlify.com/sites/my-angular-template/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/52a905ed-204f-418c-a913-24453ee2bd83/deploy-status" height="20"/></a>
 	</p>
 
