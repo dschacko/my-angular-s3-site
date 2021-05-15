@@ -31,8 +31,8 @@
     },
     {
       "alt": "DeployAngular",
-      "url": "https://github.com/Web-Tech-Projects/Angular-template/actions/workflows/deploy.yml",
-      "img": "https://github.com/Web-Tech-Projects/Angular-template/actions/workflows/deploy.yml/badge.svg"
+      "url": "https://david-dm.org/dschacko/my-angular-s3-site",
+      "img": "https://status.david-dm.org/gh/dschacko/my-angular-s3-site.svg"
     },
     {
       "alt": "Netlify Status",
