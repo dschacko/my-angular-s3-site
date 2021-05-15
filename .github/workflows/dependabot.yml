@@ -1,0 +1,27 @@
+name: "Dependabot"
+
+on:
+  pull_request:
+  
+jobs:
+  dependabot-approval:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+    steps:
+    - uses: hmarr/auto-approve-action@v2
+      if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+      with:
+        github-token: "${{ secrets.DEPENDABOT_TOKEN }}"
+
+  merge-me:
+    if: ${{ github.event.pull_request.sender == 'dependabot[bot]' }}
+    name: Merge me!
+    needs: dependabot-approval
+    runs-on: ubuntu-latest
+    steps:
+    - name: Merge me!
+      uses: ridedott/merge-me-action@master
+      with:
+        GITHUB_TOKEN: ${{ secrets.DEPENDABOT_TOKEN  }}
+      timeout-minutes: 5
+

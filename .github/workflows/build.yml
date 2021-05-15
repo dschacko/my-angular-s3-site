@@ -1,0 +1,83 @@
+name: 'Builds'
+
+on:
+  push:
+    branches: [ feature/**, review/**,master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.15]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Node modules
+      id: node-Cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          **/node_modules
+        key: node-modules-${{ hashFiles('package-lock.json') }}
+
+
+    - name: Use Node.js ${{matrix.node-version}}
+      uses: actions/setup-node@v1
+      with:
+       node-version: ${{matrix.node-version}}
+    - run: |
+        npm install
+        npm run test
+    
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: CodeCov Action
+      uses: codecov/codecov-action@v1
+      with:
+       token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+         node-version: [14.15]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Node modules
+      id: node-Cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          **/node_modules
+        key: node-modules-${{ hashFiles('package-lock.json') }}
+
+    - name: Install Dependencies
+      #if: steps.node-cache.outputs.cache-hit != 'true'
+      run: |
+        npm install
+        
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+        #build: npm run build
+        start: npm start
+        project: ./e2e
+        record: true
+        wait-on: 'http://localhost:4200'
+        wait-on-timeout: 240
+        #cache-key: node-modules-${{ hashFiles('package-lock.json') }}
+      env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
